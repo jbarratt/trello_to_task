@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
-import simplejson as json
+from __future__ import print_function
+try:
+    import simplejson as json
+except ImportError:
+    import json
 import uuid
 import sys
 from copy import deepcopy
@@ -75,4 +79,4 @@ for card in trello['cards']:
                     export_task(card, l)
 
 for task in tasks:
-    print >>outfile, json.dumps(task)
+    print(json.dumps(task), file=outfile)
