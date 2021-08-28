@@ -103,7 +103,7 @@ for card in trello['cards']:
         for l in trello['lists']:
             if l['id'] == card['idList']:
                 if l['closed'] or matches_done_list_re(l['name']):
-                    export_task(board_name, card, l, 'done')
+                    export_task(board_name, card, l, 'completed')
                 else:
                     export_task(board_name, card, l, 'pending')
 
