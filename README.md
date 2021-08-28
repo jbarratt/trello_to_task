@@ -24,9 +24,10 @@ any of your real tasks.
 ## Let's do this
 
 Once you have a Trello export file, run
-
-        $ ./trello_to_task.py home_board.json out.json
-        $ task import out.json
+```
+$ ./trello_to_task.py home_board.json out.json
+$ task import out.json
+```
 
 # Customization help
 
@@ -35,13 +36,14 @@ projects, etc.
 
 Right now
 
-* Everything comes in with `project:home`
+* Everything comes in with `project:${board_name}`
 * If a card had a checklist on it
-    * The name of the card is mashed up (strip spaces and lowercase it)
-    * That makes a new project under home (So 'Buy Car' => `home.buycar`)
-    * All the checklist items become tasks in that project, as does the
-      (originally named) main task itself
+    * The name of the card is mashed up (strip spaces and lowercase it, so 'Buy Car' => `${board_name}.buycar`)
+    * All the checklist items become tasks in that project, as does the (originally named) main task itself
     * The main task depends on all the checklist items
+* If a trello list name matches `done_list_names` or is closed
+    * It will be added as done in taskwarrior
+    * Default value for `done_list_names` is `Done`
 
 ## Trello schema notes
 
@@ -64,7 +66,7 @@ The basic structure of the file looks like:
         * text
     * card
         * id
-    * type = commentCard
+    * type = createCard|commentCard
 
 # Taskwarrior format
 
